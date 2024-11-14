@@ -78,7 +78,7 @@ IService::Pointer ServiceFactory::createVideoService(aasdk::messenger::IMessenge
     projection::IVideoOutput::Pointer videoOutput = nullptr;
 #ifdef USE_OMX
     if (configuration_->getAAType() == configuration::AAType::OMX)
-         auto videoOutput(std::make_shared<projection::OMXVideoOutput>(configuration_));
+         videoOutput = std::make_shared<projection::OMXVideoOutput>(configuration_);
 #endif
     if (configuration_->getAAType() == configuration::AAType::QT || videoOutput == nullptr)
         videoOutput = std::shared_ptr<projection::IVideoOutput>(new projection::QtVideoOutput(configuration_), std::bind(&QObject::deleteLater, std::placeholders::_1));

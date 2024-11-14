@@ -134,7 +134,7 @@ void Configuration::load()
         enableTouchscreen_ = iniConfig.get<bool>(cInputEnableTouchscreenKey, true);
         enablePlayerControl_ = iniConfig.get<bool>(cInputEnablePlayerControlKey, false);
         this->readButtonCodes(iniConfig);
-        videoAAType = static_cast<AAType>(iniConfig.get<uint32_t>(cAAType, static_cast<uint32_t>(AAType::QT)));
+        videoAAType = static_cast<AAType>(iniConfig.get<uint32_t>(cAAType, static_cast<uint32_t>(AAType::OMX)));
 
         bluetoothAdapterType_ = static_cast<BluetoothAdapterType>(iniConfig.get<uint32_t>(cBluetoothAdapterTypeKey,
                                                                                           static_cast<uint32_t>(BluetoothAdapterType::NONE)));
