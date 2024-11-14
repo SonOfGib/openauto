@@ -59,6 +59,7 @@ const std::string Configuration::cVideoScreenDPIKey = "Video.ScreenDPI";
 const std::string Configuration::cVideoOMXLayerIndexKey = "Video.OMXLayerIndex";
 const std::string Configuration::cVideoMarginWidth = "Video.MarginWidth";
 const std::string Configuration::cVideoMarginHeight = "Video.MarginHeight";
+const std::string Configuration::cAAType = "Video.AAType";
 
 const std::string Configuration::cAudioMusicAudioChannelEnabled = "Audio.MusicAudioChannelEnabled";
 const std::string Configuration::cAudioSpeechAudioChannelEnabled = "Audio.SpeechAudioChannelEnabled";
@@ -133,6 +134,7 @@ void Configuration::load()
         enableTouchscreen_ = iniConfig.get<bool>(cInputEnableTouchscreenKey, true);
         enablePlayerControl_ = iniConfig.get<bool>(cInputEnablePlayerControlKey, false);
         this->readButtonCodes(iniConfig);
+        videoAAType = static_cast<AAType>(iniConfig.get<uint32_t>(cAAType, static_cast<uint32_t>(AAType::QT)));
 
         bluetoothAdapterType_ = static_cast<BluetoothAdapterType>(iniConfig.get<uint32_t>(cBluetoothAdapterTypeKey,
                                                                                           static_cast<uint32_t>(BluetoothAdapterType::NONE)));
@@ -551,6 +553,10 @@ void Configuration::setSpeechAudioChannelEnabled(bool value)
 AudioOutputBackendType Configuration::getAudioOutputBackendType() const
 {
     return audioOutputBackendType_;
+}
+
+AAType Configuration::getAAType() {
+    return videoAAType;
 }
 
 void Configuration::setAudioOutputBackendType(AudioOutputBackendType value)

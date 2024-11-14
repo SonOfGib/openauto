@@ -26,6 +26,7 @@
 #include <f1x/openauto/autoapp/Configuration/BluetootAdapterType.hpp>
 #include <f1x/openauto/autoapp/Configuration/HandednessOfTrafficType.hpp>
 #include <f1x/openauto/autoapp/Configuration/AudioOutputBackendType.hpp>
+#include <f1x/openauto/autoapp/Configuration/AAType.hpp>
 
 namespace f1x
 {
@@ -121,6 +122,8 @@ public:
     virtual void setSpeechAudioChannelEnabled(bool value) = 0;
     virtual AudioOutputBackendType getAudioOutputBackendType() const = 0;
     virtual void setAudioOutputBackendType(AudioOutputBackendType value) = 0;
+
+    virtual AAType getAAType() = 0;
 };
 
 }

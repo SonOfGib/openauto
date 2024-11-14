@@ -117,6 +117,7 @@ public:
     void setSpeechAudioChannelEnabled(bool value) override;
     AudioOutputBackendType getAudioOutputBackendType() const override;
     void setAudioOutputBackendType(AudioOutputBackendType value) override;
+    AAType getAAType() override;
 
 private:
     void readButtonCodes(boost::property_tree::ptree& iniConfig);
@@ -156,6 +157,7 @@ private:
     bool musicAudioChannelEnabled_;
     bool speechAudiochannelEnabled_;
     AudioOutputBackendType audioOutputBackendType_;
+    AAType videoAAType;
 
     static const std::string cConfigFileName;
 
@@ -187,6 +189,7 @@ private:
     static const std::string cVideoOMXLayerIndexKey;
     static const std::string cVideoMarginWidth;
     static const std::string cVideoMarginHeight;
+    static const std::string cAAType;
 
     static const std::string cAudioMusicAudioChannelEnabled;
     static const std::string cAudioSpeechAudioChannelEnabled;

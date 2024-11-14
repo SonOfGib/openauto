@@ -75,11 +75,13 @@ ServiceList ServiceFactory::create(aasdk::messenger::IMessenger::Pointer messeng
 
 IService::Pointer ServiceFactory::createVideoService(aasdk::messenger::IMessenger::Pointer messenger)
 {
+    projection::IVideoOutput::Pointer videoOutput = nullptr;
 #ifdef USE_OMX
-    auto videoOutput(std::make_shared<projection::OMXVideoOutput>(configuration_));
-#else
-    projection::IVideoOutput::Pointer videoOutput(new projection::QtVideoOutput(configuration_), std::bind(&QObject::deleteLater, std::placeholders::_1));
+    if (configuration_->getAAType() == configuration::AAType::OMX)
+         auto videoOutput(std::make_shared<projection::OMXVideoOutput>(configuration_));
 #endif
+    if (configuration_->getAAType() == configuration::AAType::QT || videoOutput == nullptr)
+        videoOutput = std::shared_ptr<projection::IVideoOutput>(new projection::QtVideoOutput(configuration_), std::bind(&QObject::deleteLater, std::placeholders::_1));
     return std::make_shared<VideoService>(ioService_, messenger, std::move(videoOutput));
 }
 

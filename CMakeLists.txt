@@ -4,7 +4,7 @@ if(CROSS_COMPILE_ARMHF)
     set(CMAKE_C_COMPILER /usr/bin/arm-linux-gnueabihf-gcc-8)
     set(CMAKE_CXX_COMPILER /usr/bin/arm-linux-gnueabihf-g++-8)
     set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "armhf")
-endif(CROSS_COMPILE)
+endif(CROSS_COMPILE_ARMHF)
 project(openauto CXX)
 
 set(CMAKE_AUTOMOC ON)
